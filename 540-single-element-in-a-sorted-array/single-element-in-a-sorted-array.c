@@ -1,8 +1,21 @@
 int singleNonDuplicate(int* nums, int numsSize) {
-    int ans = 0;
-    for(int i=0;i<numsSize;i++)
+    int left = 0,right = numsSize - 1;
+    while(left < right)
     {
-        ans = ans ^ nums[i];
+        int mid = left + (right - left) / 2;
+        if(mid % 2 == 1)
+        {
+            mid--;
+        }
+        if(nums[mid] == nums[mid + 1])
+        {
+            left = mid + 2;
+        }
+        else
+        {
+            right = mid;
+        }
+      
     }
-    return ans;
+    return nums[left];
 }
