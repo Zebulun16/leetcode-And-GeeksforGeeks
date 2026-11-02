@@ -1,24 +1,21 @@
 int pivotIndex(int* nums, int numsSize) {
-    int *prefix = calloc(numsSize,sizeof(int));
-    if(prefix == NULL)
-        return 1;
-    int *suffix = calloc(numsSize,sizeof(int));
-    if(suffix == NULL)
-        return 1;
-    for(int i=1;i<numsSize;i++)
+    int left = 0,right = 0,sum = 0;
+    for(int i=0;i<numsSize;i++)
     {
-        prefix[i] = prefix[i-1] + nums[i-1];
-    }
-
-    for(int i = numsSize - 2;i>=0;i--)
-    {
-        suffix[i] = suffix[i+1] + nums[i+1];
+        sum = sum + nums[i];
     }
 
     for(int i=0;i<numsSize;i++)
     {
-        if(prefix[i] == suffix[i])
+        right = sum - nums[i] - left;
+
+        
+
+        if(left == right)
             return i;
+
+        left += nums[i];
+
     }
     return -1;
 }
